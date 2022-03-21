@@ -6,7 +6,7 @@
 
 // Imports the Secret Manager library
 import {SecretManagerServiceClient} from '@google-cloud/secret-manager';
-import { Injectable } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 
 // Instantiates a client
 
@@ -19,8 +19,8 @@ export async function accessSecretVersion(secret: string) {
   // Extract the payload as a string.
   const payload = version.payload.data.toString();
 
+  const logger = new Logger("HTTP");
   // WARNING: Do not print the secret in a production environment - this
   // snippet is showing how to access the secret material.
-  console.info(`Payload: ${payload}`);
-
+  logger.log(`Payload: ${payload}`)
 }
