@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { accessSecretVersion } from './config/secretmanager.config';
 import { LoggerMiddleware } from './middleware/logger';
 import { Product } from './product/product.entity';
 import { Project } from './project/project.entity';
@@ -34,5 +35,6 @@ export class AppModule implements NestModule {
   constructor(private connection: Connection) {}
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(LoggerMiddleware).forRoutes('*');
+    accessSecretVersion('projects/964659245205/secrets/DATABASE/versions/latest');
   }
 }
