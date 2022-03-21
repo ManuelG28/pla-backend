@@ -22,6 +22,7 @@
     "gcp-build": "npm run build"
   },
   "dependencies": {
+    "@google-cloud/secret-manager": "^3.11.0",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
