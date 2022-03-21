@@ -33,6 +33,6 @@ export class AppModule implements NestModule {
   constructor(private connection: Connection) {}
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(LoggerMiddleware).forRoutes('*');
-    accessSecretVersion('projects/964659245205/secrets/DATABASE/versions/latest');
+    accessSecretVersion('projects/964659245205/secrets/DATABASE/versions/1');
   }
 }
