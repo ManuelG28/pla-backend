@@ -10,17 +10,17 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'postgres',
-    host: '/cloudsql/pla-eafit:us-central1:pla-database',
-    username: 'pla-admin',
-    password: 'pla-eafit',
-    database: 'pla-project',
+    host: process.env.DATABASE_HOST,
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
     extra:{
-      sockethPath: '/cloudsql/pla-eafit:us-central1:pla-database'
+      sockethPath: process.env.DATABASE_HOST,
     },
     entities: [User],
     synchronize: true,
   }), UserModule],
-  controllers: [AppController],
+  controllers: [AppController], 
   providers: [AppService],
 })
 
