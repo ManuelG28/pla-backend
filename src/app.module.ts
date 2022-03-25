@@ -4,6 +4,10 @@ import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger';
+import { Product } from './product/product.entity';
+import { Quotation } from './quotation/quotation.entity';
+import { Supplier } from './supplier/supplier.entity';
+import { SupplierModule } from './supplier/supplier.module';
 import { User } from './user/user.entity';
 import { UserModule } from './user/user.module';
 
@@ -17,9 +21,9 @@ import { UserModule } from './user/user.module';
     extra:{
       sockethPath: process.env.DATABASE_HOST,
     },
-    entities: [User],
+    entities: [User, Quotation, Product, Supplier],
     synchronize: true,
-  }), UserModule],
+  }), UserModule, SupplierModule],
   controllers: [AppController], 
   providers: [AppService],
 })
