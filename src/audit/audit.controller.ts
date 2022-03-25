@@ -18,6 +18,6 @@ export class AuditController {
     audit.endDate = auditDto.endDate;
     audit.pdfInfo = auditDto.pdfInfo;
     await this.auditService.add(audit);
-    return 'listorner en la basetorner';
+    return 'Audit is now saved on BD';
   }
 }
