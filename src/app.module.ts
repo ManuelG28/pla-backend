@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { accessSecretVersion } from './config/secretmanager.config';
 import { LoggerMiddleware } from './middleware/logger';
 import { Product } from './product/product.entity';
 import { Quotation } from './quotation/quotation.entity';
@@ -11,6 +10,8 @@ import { Supplier } from './supplier/supplier.entity';
 import { SupplierModule } from './supplier/supplier.module';
 import { User } from './user/user.entity';
 import { UserModule } from './user/user.module';
+import { Audit } from './audit/audit.entity';
+import { AuditModule } from './audit/audit.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -22,9 +23,9 @@ import { UserModule } from './user/user.module';
     extra:{
       sockethPath: process.env.DATABASE_HOST,
     },
-    entities: [User, Quotation, Product, Supplier],
+    entities: [User, Quotation, Product, Supplier, Audit],
     synchronize: true,
-  }), UserModule, SupplierModule],
+  }), UserModule, SupplierModule, AuditModule],
   controllers: [AppController], 
   providers: [AppService],
 })
@@ -33,6 +34,5 @@ export class AppModule implements NestModule {
   constructor(private connection: Connection) {}
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(LoggerMiddleware).forRoutes('*');
-    accessSecretVersion('projects/964659245205/secrets/DATABASE/versions/1');
   }
 }
