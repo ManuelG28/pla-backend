@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger';
 import { Product } from './product/product.entity';
+import { Project } from './project/project.entity';
+import { ProjectModule } from './project/project.module';
 import { Quotation } from './quotation/quotation.entity';
 import { Supplier } from './supplier/supplier.entity';
 import { SupplierModule } from './supplier/supplier.module';
@@ -23,9 +25,9 @@ import { AuditModule } from './audit/audit.module';
     extra:{
       sockethPath: process.env.DATABASE_HOST,
     },
-    entities: [User, Quotation, Product, Supplier, Audit],
+    entities: [User, Quotation, Product, Supplier, Audit, Project],
     synchronize: true,
-  }), UserModule, SupplierModule, AuditModule],
+  }), UserModule, SupplierModule, AuditModule, ProjectModule],
   controllers: [AppController], 
   providers: [AppService],
 })
