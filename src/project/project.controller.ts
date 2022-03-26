@@ -7,12 +7,6 @@ import { Project } from './project.entity';
 export class ProjectController {
   constructor(private projectService: ProjectService) {}
   
-  /*@Get('list/')
-  getAuditList() {
-    const auditList = this.auditService.findAll();
-    return auditList;
-  }
-  */
   @Post('create/')
   async createProject(@Body() seedplotDto: SeedplotDto): Promise<string> {
     const project = new Project();

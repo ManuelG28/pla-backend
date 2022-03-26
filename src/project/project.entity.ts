@@ -5,10 +5,10 @@ export class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("text")
+  @Column()
   seed: string;
 
-  @Column("numeric")
+  @Column()
   plot: number;
 
 }
